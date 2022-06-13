@@ -4,6 +4,15 @@
     "runMode": 2,
     "openMode": 1
   },
+  "reporter": "cypress-mochawesome-reporter",
+  "reporterOptions": {
+    "reportDir": "cypress/report",
+    "charts": true,
+    "reportPageTitle": "The Animals Observatory: e2e tests report",
+    "html": true,
+    "json": false,
+    "autoOpen": true
+  },
   "viewportWidth": 1280,
   "viewportHeight": 720,
   "defaultCommandTimeout": 6000,
