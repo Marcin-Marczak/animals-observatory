@@ -1,0 +1,11 @@
+{
+  "baseUrl": "https://www.theanimalsobservatory.com",
+  "retries": {
+    "runMode": 2,
+    "openMode": 1
+  },
+  "viewportWidth": 1280,
+  "viewportHeight": 720,
+  "defaultCommandTimeout": 6000,
+  "$schema": "https://on.cypress.io/cypress.schema.json"
+}

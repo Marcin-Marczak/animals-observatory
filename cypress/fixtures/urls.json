@@ -1,0 +1,6 @@
+{
+  "signIn": "/customer/account/login/",
+  "api": {
+    "signIn": "/customer/section/load/?sections=customer&force_new_section_timestamp=false&_=*"
+  }
+}
