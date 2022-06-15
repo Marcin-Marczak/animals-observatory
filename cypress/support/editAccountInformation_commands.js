@@ -1,6 +1,6 @@
 import editAccountInformationLocators from "./locators/editAccountInformation";
 
-Cypress.Commands.add('changeFirstNameLastName', (unique) => {
+Cypress.Commands.add('changeFirstNameLastName', (unique, isChanged) => {
     cy.fixture('user.json').then((user) => {
         cy.fixture('urls.json').then((url) => {
             const firstName = user.firstName + '_' + unique;
@@ -11,13 +11,15 @@ Cypress.Commands.add('changeFirstNameLastName', (unique) => {
             cy.get(editAccountInformationLocators.firstNameInput).fill(firstName);
             cy.get(editAccountInformationLocators.lastNameInput).fill(lastName);
 
-            cy.intercept('GET', url.api.userData).as('userData');
+            cy.intercept('GET', url.api.customer).as('userData');
 
             cy.get(editAccountInformationLocators.saveButton).click();
 
-            cy.wait('@userData', { timeout: 8000 })
+            cy.wait('@userData', { timeout: 10000 })
                 .its('response.body.customer.fullname')
                 .should('eq', fullName);
+
+            cy.findByText(editAccountInformationLocators.savedConfirmationText).should(isChanged);
         });
     });
 })

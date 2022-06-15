@@ -14,6 +14,6 @@ describe('User Account', () => {
     })
 
     it('Change user - valid first name and last name', function () {
-        cy.changeFirstNameLastName(this.timestamp);
+        cy.changeFirstNameLastName(this.timestamp, 'exist');
     });
 });

@@ -21,13 +21,13 @@ describe('Sign in process', () => {
         const invalidEmail = this.data.email + 'test';
         const validPassword = password.validPassword;
 
-        cy.signIn(invalidEmail, validPassword, 'false', 'exist');
+        cy.signIn(invalidEmail, validPassword, false, 'exist');
     });
 
     it('Sign in - invalid password', function () {
         const validEmail = this.data.email;
         const invalidPassword = password.validPassword + 'test';
 
-        cy.signIn(validEmail, invalidPassword, 'false', 'exist');
+        cy.signIn(validEmail, invalidPassword, false, 'exist');
     });
 });

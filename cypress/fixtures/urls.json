@@ -2,7 +2,6 @@
   "signIn": "/customer/account/login/",
   "editAccountInformation": "/customer/account/edit/",
   "api": {
-    "signIn": "/customer/section/load/?sections=customer&force_new_section_timestamp=false&_=*",
-    "userData": "/customer/section/load/?sections=&force_new_section_timestamp=false&_=*"
+    "customer": "/customer/section/load/?sections=&force_new_section_timestamp=false&_=*"
   }
 }
