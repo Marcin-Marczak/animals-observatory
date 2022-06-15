@@ -6,9 +6,12 @@ declare namespace Cypress {
          * Custom command to ... add your description here
          * @example cy.clickOnMyJourneyInCandidateCabinet()
          */
+        createTimestamp(): Chainable<null>;
         acceptCookies(): Chainable<null>;
         openMainPage(): Chainable<null>;
         openSignInPage(): Chainable<null>;
+        openAccountInformationPage(): Chainable<null>;
         signIn(email, password, isLoggedIn, isErrorTextExist): Chainable<null>;
+        changeFirstNameLastName(unique): Chainable<null>;
     }
 }
