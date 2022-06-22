@@ -1,4 +1,5 @@
 import password from "../../password";
+import editAccountInformationLocators from "../support/locators/editAccountInformation";
 
 describe('User Account', () => {
     beforeEach(function () {
@@ -6,7 +7,7 @@ describe('User Account', () => {
         cy.acceptCookies();
 
         cy.fixture('signIn.json').then((user) => {
-            cy.signIn(user.email, password.validPassword, true, 'not.exist')
+            cy.signIn(user.email, password.validPassword)
         });
         cy.openAccountInformationPage();
 
@@ -15,5 +16,7 @@ describe('User Account', () => {
 
     it('Change user - valid first name and last name', function () {
         cy.changeFirstNameLastName(this.timestamp, 'exist');
+
+        cy.findByText(editAccountInformationLocators.savedConfirmationText).should(isChanged)
     });
 });

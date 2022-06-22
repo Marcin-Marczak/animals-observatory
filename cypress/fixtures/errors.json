@@ -1,0 +1,5 @@
+{
+  "requiredField": "This is a required field.",
+  "invalidEmailFormat": "Please enter a valid email address (Ex: johndoe@domain.com).",
+  "loginError": "You did not sign in correctly or your account is temporarily disabled."
+}
