@@ -12,6 +12,6 @@ declare namespace Cypress {
         openSignInPage(): Chainable<null>;
         openAccountInformationPage(): Chainable<null>;
         signIn(email, password): Chainable<null>;
-        changeFirstNameLastName(unique, isChanged): Chainable<null>;
+        changeFirstNameLastName(firstName, lastName): Chainable<null>;
     }
 }

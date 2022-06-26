@@ -1,5 +1,5 @@
 import password from "../../password";
-import editAccountInformationLocators from "../support/locators/editAccountInformation";
+import commonLocators from "../support/locators/common";
 
 describe('User Account', () => {
     beforeEach(function () {
@@ -7,16 +7,33 @@ describe('User Account', () => {
         cy.acceptCookies();
 
         cy.fixture('signIn.json').then((user) => {
-            cy.signIn(user.email, password.validPassword)
+            cy.fixture('user.json').then((data) => {
+                cy.fixture('confirmations.json').then((text) => {
+                    cy.signIn(user.email, password.validPassword)
+                    this.data = data
+                    this.text = text
+                })
+            });
         });
+
         cy.openAccountInformationPage();
 
         cy.createTimestamp().as('timestamp');
     })
 
-    it('Change user - valid first name and last name', function () {
-        cy.changeFirstNameLastName(this.timestamp, 'exist');
+    it('Change user first name and last name - valid data', function () {
+        const firstName = this.data.firstName + '_' + this.timestamp;
+        const lastName = this.data.lastName + '_' + this.timestamp;
+        const fullName = firstName + ' ' + lastName;
 
-        cy.findByText(editAccountInformationLocators.savedConfirmationText).should(isChanged)
+        cy.changeFirstNameLastName(firstName, lastName);
+
+        cy.wait('@userData', { timeout: 10000 })
+            .its('response.body.customer.fullname')
+            .should('eq', fullName);
+
+        cy.get(commonLocators.displayedText)
+            .should('exist')
+            .and('have.text', this.text.accountInformationSaved);
     });
 });

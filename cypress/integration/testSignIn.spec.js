@@ -1,5 +1,6 @@
 import password from "../../password";
 import signInLocators from "../support/locators/signIn";
+import commonLocators from "../support/locators/common";
 
 describe('Sign in process', () => {
     beforeEach(function () {
@@ -37,7 +38,7 @@ describe('Sign in process', () => {
             .its('response.body.customer.isLoggedIn')
             .should('eq', false);
 
-        cy.get(signInLocators.loginError)
+        cy.get(commonLocators.displayedText)
             .should('exist')
             .and('have.text', this.error.loginError);
     });
@@ -52,7 +53,7 @@ describe('Sign in process', () => {
             .its('response.body.customer.isLoggedIn')
             .should('eq', false);
 
-        cy.get(signInLocators.loginError)
+        cy.get(commonLocators.displayedText)
             .should('exist')
             .and('have.text', this.error.loginError);
     });
