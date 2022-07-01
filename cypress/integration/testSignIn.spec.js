@@ -1,6 +1,6 @@
-import password from "../../password";
-import signInLocators from "../support/locators/signIn";
-import commonLocators from "../support/locators/common";
+import password from '../../password';
+import signInLocators from '../support/locators/signIn';
+import commonLocators from '../support/locators/common';
 
 describe('Sign in process', () => {
     beforeEach(function () {
@@ -9,11 +9,11 @@ describe('Sign in process', () => {
 
         cy.fixture('signIn.json').then((data) => {
             cy.fixture('errors.json').then((error) => {
-                this.data = data
-                this.error = error
+                this.data = data;
+                this.error = error;
             });
         });
-    })
+    });
 
     it('Sign in - valid data', function () {
         const validEmail = this.data.email;
@@ -117,7 +117,7 @@ describe('Sign in process', () => {
         locators.forEach(locator => {
             cy.get(locator)
                 .should('exist')
-                .and('have.text', this.error.requiredField)
+                .and('have.text', this.error.requiredField);
         });
     });
 });

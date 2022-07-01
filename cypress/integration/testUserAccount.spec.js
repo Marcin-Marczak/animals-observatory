@@ -1,5 +1,5 @@
-import password from "../../password";
-import commonLocators from "../support/locators/common";
+import password from '../../password';
+import commonLocators from '../support/locators/common';
 
 describe('User Account', () => {
     beforeEach(function () {
@@ -9,17 +9,17 @@ describe('User Account', () => {
         cy.fixture('signIn.json').then((user) => {
             cy.fixture('user.json').then((data) => {
                 cy.fixture('confirmations.json').then((text) => {
-                    cy.signIn(user.email, password.validPassword)
-                    this.data = data
-                    this.text = text
-                })
+                    cy.signIn(user.email, password.validPassword);
+                    this.data = data;
+                    this.text = text;
+                });
             });
         });
 
         cy.openAccountInformationPage();
 
         cy.createTimestamp().as('timestamp');
-    })
+    });
 
     it('Change user first name and last name - valid data', function () {
         const firstName = this.data.firstName + '_' + this.timestamp;

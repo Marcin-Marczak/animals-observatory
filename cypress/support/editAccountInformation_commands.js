@@ -1,4 +1,4 @@
-import editAccountInformationLocators from "./locators/editAccountInformation";
+import editAccountInformationLocators from './locators/editAccountInformation';
 
 Cypress.Commands.add('changeFirstNameLastName', (firstName, lastName) => {
             cy.get(editAccountInformationLocators.currentPasswordInput).should('not.be.visible');
@@ -7,7 +7,7 @@ Cypress.Commands.add('changeFirstNameLastName', (firstName, lastName) => {
 
             cy.fixture('urls.json').then((url) => {
                 cy.intercept('GET', url.api.customer).as('userData');
-            })
+            });
 
             cy.get(editAccountInformationLocators.saveButton).click();
 });

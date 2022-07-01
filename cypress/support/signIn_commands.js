@@ -1,4 +1,4 @@
-import signInLocators from "./locators/signIn";
+import signInLocators from './locators/signIn';
 
 Cypress.Commands.add('signIn', (email, password) => {
     cy.get(signInLocators.emailInput).type(email);
@@ -6,7 +6,7 @@ Cypress.Commands.add('signIn', (email, password) => {
 
     cy.fixture('urls.json').then((data) => {
         cy.intercept('GET', data.api.customer).as('loggedUser');
-    })
+    });
 
     cy.get(signInLocators.submitButton).click();
 });
