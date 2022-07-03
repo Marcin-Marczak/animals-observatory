@@ -1,6 +1,7 @@
 {
   "signIn": "/customer/account/login/",
   "editAccountInformation": "/customer/account/edit/",
+  "forgotPassword": "/customer/account/forgotpassword/",
   "api": {
     "customer": "/customer/section/load/?sections=&force_new_section_timestamp=false&_=*"
   }

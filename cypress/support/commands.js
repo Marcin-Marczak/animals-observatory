@@ -27,3 +27,9 @@ Cypress.Commands.add('openAccountInformationPage', () => {
         cy.visit(data.editAccountInformation);
     });
 });
+
+Cypress.Commands.add('openForgotPasswordPage', () => {
+    cy.fixture('urls.json').then((data) => {
+        cy.visit(data.forgotPassword);
+    });
+});
