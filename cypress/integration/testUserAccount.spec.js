@@ -6,13 +6,12 @@ describe('User Account', () => {
         cy.openSignInPage();
         cy.acceptCookies();
 
-        cy.fixture('signIn.json').then((user) => {
-            cy.fixture('user.json').then((data) => {
-                cy.fixture('confirmations.json').then((text) => {
-                    cy.signIn(user.email, password.validPassword);
-                    this.data = data;
-                    this.text = text;
-                });
+
+        cy.fixture('confirmations').then((confirmation) => {
+            cy.fixture('user').then((user) => {
+                cy.signIn(user.email, password.validPassword);
+                this.confirmation = confirmation;
+                this.user = user;
             });
         });
 
@@ -22,8 +21,8 @@ describe('User Account', () => {
     });
 
     it('Change user first name and last name - valid data', function () {
-        const firstName = this.data.firstName + '_' + this.timestamp;
-        const lastName = this.data.lastName + '_' + this.timestamp;
+        const firstName = this.user.firstName + '_' + this.timestamp;
+        const lastName = this.user.lastName + '_' + this.timestamp;
         const fullName = firstName + ' ' + lastName;
 
         cy.changeFirstNameLastName(firstName, lastName);
@@ -34,6 +33,6 @@ describe('User Account', () => {
 
         cy.get(commonLocators.displayedText)
             .should('exist')
-            .and('have.text', this.text.accountInformationSaved);
+            .and('have.text', this.confirmation.accountInformationSaved);
     });
 });

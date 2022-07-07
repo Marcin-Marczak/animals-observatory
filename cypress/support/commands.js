@@ -17,19 +17,19 @@ Cypress.Commands.add('openMainPage', () => {
 });
 
 Cypress.Commands.add('openSignInPage', () => {
-    cy.fixture('urls.json').then((data) => {
-       cy.visit(data.signIn);
+    cy.fixture('urls').then((url) => {
+       cy.visit(url.signIn);
     });
 });
 
 Cypress.Commands.add('openAccountInformationPage', () => {
-    cy.fixture('urls.json').then((data) => {
-        cy.visit(data.editAccountInformation);
+    cy.fixture('urls').then((url) => {
+        cy.visit(url.editAccountInformation);
     });
 });
 
 Cypress.Commands.add('openForgotPasswordPage', () => {
-    cy.fixture('urls.json').then((data) => {
-        cy.visit(data.forgotPassword);
+    cy.fixture('urls').then((url) => {
+        cy.visit(url.forgotPassword);
     });
 });

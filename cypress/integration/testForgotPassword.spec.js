@@ -6,14 +6,14 @@ describe('Forgot password', () => {
         cy.openForgotPasswordPage();
         cy.acceptCookies();
 
-        cy.fixture('signIn.json').then((data) => {
-            cy.fixture('urls.json').then((url) => {
-                cy.fixture('confirmations.json').then((text) => {
-                    cy.fixture('errors.json').then((error) => {
-                        this.data = data;
-                        this.url = url;
-                        this.text = text;
+        cy.fixture('confirmations').then((confirmation) => {
+            cy.fixture('errors').then((error) => {
+                cy.fixture('urls').then((url) => {
+                    cy.fixture('user').then((user) => {
+                        this.confirmation = confirmation;
                         this.error = error;
+                        this.url = url;
+                        this.user = user;
                     });
                 });
             });
@@ -23,17 +23,17 @@ describe('Forgot password', () => {
     it('Reset password - valid email', function () {
         cy.intercept('GET', this.url.api.customer).as('form');
 
-        cy.fillForgotPasswordForm(this.data.email);
+        cy.fillForgotPasswordForm(this.user.email);
 
         cy.wait('@form', { timeout: 10000 })
             .its('response.statusCode')
             .should('eq', 200);
 
-        cy.get(commonLocators.displayedText).should('contain.text', this.text.resetPasswordLinkSent);
+        cy.get(commonLocators.displayedText).should('contain.text', this.confirmation.resetPasswordLinkSent);
     });
 
     it('Reset password - invalid email', function () {
-        cy.fillForgotPasswordForm(this.data.email.replace('@', ''));
+        cy.fillForgotPasswordForm(this.user.email.replace('@', ''));
 
         cy.get(forgotPasswordLocators.emailError)
             .should('exist')

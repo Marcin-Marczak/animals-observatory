@@ -7,16 +7,16 @@ describe('Sign in process', () => {
         cy.openSignInPage();
         cy.acceptCookies();
 
-        cy.fixture('signIn.json').then((data) => {
-            cy.fixture('errors.json').then((error) => {
-                this.data = data;
+        cy.fixture('errors').then((error) => {
+            cy.fixture('user').then((user) => {
                 this.error = error;
+                this.user = user;
             });
         });
     });
 
     it('Sign in - valid data', function () {
-        const validEmail = this.data.email;
+        const validEmail = this.user.email;
         const validPassword = password.validPassword;
 
         cy.signIn(validEmail, validPassword);
@@ -29,7 +29,7 @@ describe('Sign in process', () => {
     });
 
     it('Sign in - invalid email', function () {
-        const invalidEmail = this.data.email + 'test';
+        const invalidEmail = this.user.email + 'test';
         const validPassword = password.validPassword;
 
         cy.signIn(invalidEmail, validPassword);
@@ -44,7 +44,7 @@ describe('Sign in process', () => {
     });
 
     it('Sign in - invalid password', function () {
-        const validEmail = this.data.email;
+        const validEmail = this.user.email;
         const invalidPassword = password.validPassword + 'test';
 
         cy.signIn(validEmail, invalidPassword);
@@ -59,7 +59,7 @@ describe('Sign in process', () => {
     });
 
     it('Sign in - invalid email format', function () {
-        const invalidEmailFormat = this.data.email.replace('@', '');
+        const invalidEmailFormat = this.user.email.replace('@', '');
         const validPassword = password.validPassword;
 
         cy.signIn(invalidEmailFormat, validPassword);
@@ -89,7 +89,7 @@ describe('Sign in process', () => {
     });
 
     it('Sign in - blank password', function () {
-        const validEmail = this.data.email;
+        const validEmail = this.user.email;
         const blankPassword = '{backspace}';
 
         cy.signIn(validEmail, blankPassword);
