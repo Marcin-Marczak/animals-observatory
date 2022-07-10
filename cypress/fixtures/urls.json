@@ -2,7 +2,9 @@
   "signIn": "/customer/account/login/",
   "editAccountInformation": "/customer/account/edit/",
   "forgotPassword": "/customer/account/forgotpassword/",
+  "categoryPage": "/shop/accessories",
   "api": {
-    "customer": "/customer/section/load/?sections=&force_new_section_timestamp=false&_=*"
+    "customer": "/customer/section/load/?sections=&force_new_section_timestamp=false&_=*",
+    "cart": "/customer/section/load/?sections=cart&force_new_section_timestamp=false&_=*"
   }
 }

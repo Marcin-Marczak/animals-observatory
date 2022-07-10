@@ -15,5 +15,12 @@ declare namespace Cypress {
         signIn(email, password): Chainable<null>;
         changeFirstNameLastName(firstName, lastName): Chainable<null>;
         fillForgotPasswordForm(email): Chainable<null>;
+        openCategoryPage(): Chainable<null>;
+        acceptCookies(): Chainable<null>;
+        getFirstProductName(): Chainable<null>;
+        goToFirstProductPage(): Chainable<null>;
+        selectFirstProductVariant(): Chainable<null>;
+        addProductToCart(): Chainable<null>;
+        goToCart(): Chainable<null>;
     }
 }

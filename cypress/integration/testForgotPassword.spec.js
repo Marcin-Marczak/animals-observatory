@@ -20,7 +20,7 @@ describe('Forgot password', () => {
         });
     });
 
-    it('Reset password - valid email', function () {
+    it.only('Reset password - valid email', function () {
         cy.intercept('GET', this.url.api.customer).as('form');
 
         cy.fillForgotPasswordForm(this.user.email);

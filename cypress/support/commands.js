@@ -33,3 +33,9 @@ Cypress.Commands.add('openForgotPasswordPage', () => {
         cy.visit(url.forgotPassword);
     });
 });
+
+Cypress.Commands.add('openCategoryPage', () => {
+    cy.fixture('urls').then((url) => {
+        cy.visit(url.categoryPage);
+    });
+});
