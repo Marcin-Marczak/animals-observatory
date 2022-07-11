@@ -22,10 +22,11 @@ describe('Cart', () => {
             .then((productName) => {
                 cy.get(cartLocators.productInCart)
                     .should('have.text', productName);
-        });
 
-        cy.wait('@cart', { timeout: 20000 })
-            .its('response.body.cart.summary_count')
-            .should('eq', 1);
+                cy.wait('@cart', { timeout: 10000 }).its('response.body').then((res) => {
+                    expect(res.cart.summary_count).to.eq(1);
+                    expect(res.cart.items[0].product_name).to.eq(productName);
+                });
         });
+    });
 });
