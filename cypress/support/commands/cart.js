@@ -1,4 +1,4 @@
-import cartLocators from './locators/cart';
+import cartLocators from '../locators/cart';
 
 Cypress.Commands.add('getFirstProductName', () => {
     cy.get(cartLocators.product).eq(0).text();

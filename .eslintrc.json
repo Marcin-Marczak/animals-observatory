@@ -11,6 +11,7 @@
     },
     "rules": {
         "semi": ["error", "always"],
+        "semi-spacing": "error",
         "quotes": ["error", "single"],
         "object-shorthand": ["error", "always", {
             "avoidQuotes": true,

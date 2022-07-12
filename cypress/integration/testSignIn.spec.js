@@ -19,6 +19,10 @@ describe('Sign in process', () => {
         const validEmail = this.user.email;
         const validPassword = password.validPassword;
 
+        cy.fixture('urls').then((url) => {
+            cy.intercept('GET', url.api.customer).as('loggedUser');
+        });
+
         cy.signIn(validEmail, validPassword);
 
         cy.wait('@loggedUser', { timeout: 10000 })
@@ -31,6 +35,10 @@ describe('Sign in process', () => {
     it('Sign in - invalid email', function () {
         const invalidEmail = this.user.email + 'test';
         const validPassword = password.validPassword;
+
+        cy.fixture('urls').then((url) => {
+            cy.intercept('GET', url.api.customer).as('loggedUser');
+        });
 
         cy.signIn(invalidEmail, validPassword);
 
@@ -46,6 +54,10 @@ describe('Sign in process', () => {
     it('Sign in - invalid password', function () {
         const validEmail = this.user.email;
         const invalidPassword = password.validPassword + 'test';
+
+        cy.fixture('urls').then((url) => {
+            cy.intercept('GET', url.api.customer).as('loggedUser');
+        });
 
         cy.signIn(validEmail, invalidPassword);
 
@@ -64,10 +76,6 @@ describe('Sign in process', () => {
 
         cy.signIn(invalidEmailFormat, validPassword);
 
-        cy.wait('@loggedUser', { timeout: 10000 })
-            .its('response.body.customer.isLoggedIn')
-            .should('eq', false);
-
         cy.get(signInLocators.emailError)
             .should('exist')
             .and('have.text', this.error.invalidEmailFormat);
@@ -78,10 +86,6 @@ describe('Sign in process', () => {
         const invalidPassword = password.validPassword + 'test';
 
         cy.signIn(blankEmail, invalidPassword);
-
-        cy.wait('@loggedUser', { timeout: 10000 })
-            .its('response.body.customer.isLoggedIn')
-            .should('eq', false);
 
         cy.get(signInLocators.emailError)
             .should('exist')
@@ -94,10 +98,6 @@ describe('Sign in process', () => {
 
         cy.signIn(validEmail, blankPassword);
 
-        cy.wait('@loggedUser', { timeout: 10000 })
-            .its('response.body.customer.isLoggedIn')
-            .should('eq', false);
-
         cy.get(signInLocators.passwordError)
             .should('exist')
             .and('have.text', this.error.requiredField);
@@ -109,10 +109,6 @@ describe('Sign in process', () => {
         const locators = [signInLocators.emailError, signInLocators.passwordError];
 
         cy.signIn(blankEmail, blankPassword);
-
-        cy.wait('@loggedUser', { timeout: 10000 })
-            .its('response.body.customer.isLoggedIn')
-            .should('eq', false);
 
         locators.forEach(locator => {
             cy.get(locator)

@@ -1,6 +1,6 @@
 import 'cypress-mochawesome-reporter/register';
-import './commands';
-import './signIn_commands';
-import './editAccountInformation_commands';
-import './forgotPassword_commands';
-import './cart_commands';
+import './commands/cart';
+import './commands/commands';
+import './commands/editAccountInformation';
+import './commands/forgotPassword';
+import './commands/signIn';

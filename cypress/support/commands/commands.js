@@ -2,7 +2,7 @@ require('@4tw/cypress-drag-drop');
 require('cypress-commands');
 import '@testing-library/cypress/add-commands';
 import 'cypress-fill-command';
-import mainPageLocators from './locators/mainPage';
+import mainPageLocators from '../locators/mainPage';
 
 Cypress.Commands.add('createTimestamp', () => {
     return new Date().toLocaleString().replaceAll(/[.,:\s]/g, '_');
